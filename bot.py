@@ -6,7 +6,7 @@ import random
 import re
 
 TOKEN = os.environ.get("BOT_TOKEN", "ВАШ_ТОКЕН")
-ADMIN_ID = [559631622, 521773805]
+ADMIN_IDS = [559631622, 521773805]
 
 vk_session = vk_api.VkApi(token=TOKEN)
 vk = vk_session.get_api()
@@ -199,7 +199,9 @@ for event in longpoll.listen():
                 f"🆔 Ссылка: https://vk.com/id{user_id}"
             )
 
-            send_message(ADMIN_ID, report)
-            print(f"Заявка от {user_id} отправлена админу.")
+            for admin_id in ADMIN_IDS:
+                send_message(admin_id, report)
+                print(f"Заявка от {user_id} отправлена админу {admin_id}.")
+
             del user_states[user_id]
             continue
