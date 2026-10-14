@@ -4,7 +4,7 @@ from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import random
 import re
 
-TOKEN = "vk1.a.glwIweigwNeGjpb-Uhx7HIVzjVVuZ7jQJaBffWcKRghSZ4GJFS0HXWBqlxwN-QuVBDYS_lyGSDI6qz9JysdBoLqPkf4inY5p_XX_nFBY6xVD4QE90Bjgg_AghyqVvV4N8XV_f8lZ7L3YPos4cu6i7fJ1Nlg8QfMdE5c4CdkBrRfQQIlRp9MZQFbZ9BnHpNHDubdgSFDTyrBhO-WkO6mixg"
+TOKEN = "ВАШ_ТОКЕН"
 ADMIN_ID = 559631622
 
 vk_session = vk_api.VkApi(token=TOKEN)
