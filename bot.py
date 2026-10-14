@@ -1,10 +1,11 @@
+import os
 import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import random
 import re
 
-TOKEN = "ВАШ_ТОКЕН"
+TOKEN = os.environ.get("VK_TOKEN", "ВАШ_ТОКЕН")
 ADMIN_ID = 559631622
 
 vk_session = vk_api.VkApi(token=TOKEN)
@@ -82,13 +83,13 @@ Q_DATE = "Когда вы готовы приступить к работе? В�
 
 Q_CONTACT = (
     "Оставьте контакт для связи.\n\n"
-    "Телефон должен начинаться с +7 (например, +7 999 999-99-99)\n"
+    "Телефон должен начинаться с +7 (например, +7 999 123-45-67)\n"
     "Или укажите email (например, ivan@mail.ru)."
 )
 
 Q_CONTACT_ERROR = (
     "Не похоже на телефон или email. Попробуйте ещё раз.\n\n"
-    "Телефон должен начинаться с +7 (например, +7 999 999-99-99)\n"
+    "Телефон должен начинаться с +7 (например, +7 999 123-45-67)\n"
     "Пример email: ivan@mail.ru"
 )
 
