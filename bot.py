@@ -5,7 +5,7 @@ from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import random
 import re
 
-TOKEN = os.environ.get("VK_TOKEN", "ВАШ_ТОКЕН")
+TOKEN = os.environ.get("BOT_TOKEN", "ВАШ_ТОКЕН")
 ADMIN_ID = 559631622
 
 vk_session = vk_api.VkApi(token=TOKEN)
@@ -40,12 +40,17 @@ def kb_empty():
     return keyboard.get_empty_keyboard()
 
 def send_message(user_id, message, keyboard=None):
-    vk.messages.send(
-        user_id=user_id,
-        message=message,
-        keyboard=keyboard,
-        random_id=random.randint(0, 100000)
-    )
+    try:
+        vk.messages.send(
+            user_id=user_id,
+            message=message,
+            keyboard=keyboard,
+            random_id=random.randint(0, 100000)
+        )
+        return True
+    except Exception as e:
+        print(f"Ошибка отправки пользователю {user_id}: {e}")
+        return False
 
 def is_valid_salary(text):
     cleaned = re.sub(r"[\s₽руб.,]", "", text.lower())
@@ -194,11 +199,7 @@ for event in longpoll.listen():
                 f"🆔 Ссылка: https://vk.com/id{user_id}"
             )
 
-            try:
-                send_message(ADMIN_ID, report)
-                print(f"Заявка от {user_id} отправлена админу.")
-            except Exception as e:
-                print(f"Ошибка отправки админу: {e}")
-
+            send_message(ADMIN_ID, report)
+            print(f"Заявка от {user_id} отправлена админу.")
             del user_states[user_id]
             continue
