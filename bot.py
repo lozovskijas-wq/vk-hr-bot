@@ -6,7 +6,7 @@ import random
 import re
 
 TOKEN = os.environ.get("BOT_TOKEN", "ВАШ_ТОКЕН")
-ADMIN_ID = 559631622
+ADMIN_ID = [559631622, 521773805]
 
 vk_session = vk_api.VkApi(token=TOKEN)
 vk = vk_session.get_api()
